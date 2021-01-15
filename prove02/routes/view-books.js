@@ -17,8 +17,16 @@ router.get('/view-books', (req, res, next) => {
         }
         res.render('view-books', json);
     });
+});
 
-    
+router.post('/delete-books', (req, res, next) => {
+    fs.writeFile('prove02/database.json', '', (err) => {
+        if (err) {
+            console.error(err);
+            throw err;
+        }
+    });
+    res.redirect('/prove02/view-books');
 });
 
 module.exports = router;

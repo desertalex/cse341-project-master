@@ -2,20 +2,27 @@
 
 <body>
     <%- include('includes/header.ejs') %>
-    <div class="books-container">
+    <div class="centered-content">
+        <div class="books-container">
+            <% if(books.length > 0) { %>
+                
+                    <% for (let book of books) { %>
+                        <div class="book">
+                            <h1><%= book.book_title %></h1>
+                            <p><%= book.book_description %></p>
+                        </div>
+                    <% } %>  
+                
+            <% } else { %>
+                <h1>No books yet, go suggest one!</h1>
+            <% } %>
+        </div>
         <% if(books.length > 0) { %>
-            
-                <% for (let book of books) { %>
-                    <div class="book">
-                        <h1><%= book.book_title %></h1>
-                        <p><%= book.book_description %></p>
-                    </div>
-                <% } %>  
-            
-        <% } else { %>
-            <h1>No books yet, go suggest one!</h1>
+            <form action="/prove02/delete-books" method="POST">
+                <button class="btn" type="submit">Delete All Books</button>
+            </form>
         <% } %>
-    </div> 
+    </div>
 </body>
 
 </html>
