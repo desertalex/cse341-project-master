@@ -1,0 +1,21 @@
+<%- include('includes/head.ejs') %>
+
+<body>
+    <%- include('includes/header.ejs') %>
+    <div class="books-container">
+        <% if(books.length > 0) { %>
+            
+                <% for (let book of books) { %>
+                    <div class="book">
+                        <h1><%= book.book_title %></h1>
+                        <p><%= book.book_description %></p>
+                    </div>
+                <% } %>  
+            
+        <% } else { %>
+            <h1>No books yet, go suggest one!</h1>
+        <% } %>
+    </div> 
+</body>
+
+</html>

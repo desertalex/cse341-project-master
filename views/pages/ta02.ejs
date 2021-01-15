@@ -1,21 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <% include ../includes/header.ejs %>
+    <% include ../includes/header.ejs %>
 </head>
 
 <body>
-  <% include ../includes/nav.ejs %>
-<div class="jumbotron text-center">
-  <div class="container">
-    <h1><%= title %></h1>
-    <p>This is the placeholder for Team Activity 02</p>
-  </div>
-</div>
-<div class="container">
-  
-</div>
+    <% include ../includes/nav.ejs %>
+        <div class="jumbotron text-center">
+            <div class="container">
+                <h1>
+                    <%= title %>
+                </h1>
+                <p>This is the placeholder for Team Activity 02</p>
+                <form action="/ta02/addUser" method="POST">
+                    <label for="fname">First Name</label>
+                    <input type="text" name="fname">
+                    <button type="submit">Submit</button>
+                </form>
+                <form action="/ta02/removeUser" method="POST">
+                    <label for="fname">First Name</label>
+                    <input type="text" name="fname">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="container">
+            <% if (usernames.length > 0) { %>
+                <% for (let names of usernames) { %> 
+                    <p><%= names.fname %></p>
+                <% } %> 
+            <% } else { %> 
+                <p>No usernames found</p>
+            <% console.log(usernames.length)} %> 
+
+        </div>
 
 
 </body>
+
 </html>

@@ -1,0 +1,21 @@
+<%- include('includes/head.ejs') %>
+
+<body>
+    <%- include('includes/header.ejs') %>
+
+    <main>
+        <h1 class="title">Please suggest a book to read along with its description</h1>
+        <form class="centered-content" action="/prove02/add-book" method="POST">
+            <div>
+                <label for="book-title">Book Title</label>
+                <input type="text" name="book_title">
+                <label for="book-description">Book Description</label>
+                <input type="text" name="book_description">
+            </div>
+            <button class="btn" type="submit">Add Book</button>
+        </form>
+    </main>
+
+</body>
+
+</html>
