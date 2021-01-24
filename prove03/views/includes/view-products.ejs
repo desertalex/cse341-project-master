@@ -1,0 +1,21 @@
+<div class="centered-content">
+    <div class="products-container">
+        <% if(prods.length > 0) { %>
+            <% for (let prod of prods) { %>
+                <% if (title === 'Shop Home' && prod.featured) { %>
+                    <%- include('view-product.ejs', {prod: prod}) %>
+                <% } else if (title != 'Shop Home') { %>
+                    <%- include('view-product.ejs', {prod: prod}) %>
+                <% } %>  
+            <% } %>  
+            
+        <% } else { %>
+            <h1>No products in stock</h1>
+        <% } %>
+    </div>
+    <% if(prods.length > 0 && title != 'Shop Home') { %>
+        <form action="/prove03/delete-products" method="POST">
+            <button class="btn" type="submit">Delete All Products</button>
+        </form>
+    <% } %>
+</div>

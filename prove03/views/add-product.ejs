@@ -1,0 +1,25 @@
+<%- include('includes/head.ejs') %>
+
+<body>
+    <%- include('includes/header.ejs') %>
+
+    <main>
+        <h1 class="title">Add a product</h1>
+        <form class="centered-content" action="/prove03/add-product" method="POST">
+            <div>
+                <label for="product-title">Product Title</label>
+                <input type="text" name="product_title">
+                <label for="product-description">Description</label>
+                <textarea name="product_description" cols="30" rows="10"></textarea>
+                <label for="product_price">Price</label>
+                <input type="text" name="product_price">
+                <label for="featured">Feature on homepage?</label>
+                <input type="checkbox" name="featured" value="true">
+            </div>
+            <button class="btn" type="submit">Add Product</button>
+        </form>
+    </main>
+
+</body>
+
+</html>
