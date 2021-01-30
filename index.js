@@ -20,21 +20,7 @@ const PORT = process.env.PORT || 5000 // So we can run on heroku || (OR) localho
 
 const app = express();
 
-const corsOptions = {
-    origin: "https://frozen-badlands-14213.herokuapp.com/",
-    optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
-
-const options = {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    family: 4
-};
-
-const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://alexbraddock:4tFVCLKOzVTyWJBT@cluster0.atywg.mongodb.net/shop?retryWrites=true&w=majority";
+require('dotenv').config();
 
 // Route setup. You can implement more in the future!
 const ta01Routes = require('./routes/ta01');
@@ -70,6 +56,21 @@ app.use(express.static(path.join(__dirname, 'public')))
         res.render('pages/404', { title: '404 - Page Not Found', path: req.url })
     })
 
+    const corsOptions = {
+        origin: "https://frozen-badlands-14213.herokuapp.com/",
+        optionsSuccessStatus: 200
+    };
+    app.use(cors(corsOptions));
+    
+    const options = {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        family: 4
+    };
+    
+    const MONGODB_URL = process.env.MONGODB_URL;
 
 mongoose
     .connect(
