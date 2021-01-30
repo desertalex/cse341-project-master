@@ -22,6 +22,22 @@ const app = express();
 
 require('dotenv').config();
 
+const corsOptions = {
+    origin: "https://frozen-badlands-14213.herokuapp.com/",
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
+
+const options = {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    family: 4
+};
+
+const MONGODB_URL = process.env.MONGODB_URL;
+
 // Route setup. You can implement more in the future!
 const ta01Routes = require('./routes/ta01');
 const ta02Routes = require('./routes/ta02');
@@ -56,21 +72,6 @@ app.use(express.static(path.join(__dirname, 'public')))
         res.render('pages/404', { title: '404 - Page Not Found', path: req.url })
     })
 
-    const corsOptions = {
-        origin: "https://frozen-badlands-14213.herokuapp.com/",
-        optionsSuccessStatus: 200
-    };
-    app.use(cors(corsOptions));
-    
-    const options = {
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
-        family: 4
-    };
-    
-    const MONGODB_URL = process.env.MONGODB_URL;
 
 mongoose
     .connect(
