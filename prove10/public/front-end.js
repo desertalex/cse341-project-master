@@ -1,5 +1,5 @@
 const loadItems = () => {
-    fetch('http://localhost:5000/prove10/fetchAll')
+    fetch('/prove10/fetchAll')
         .then(result => {
             return result.json();
         })
@@ -20,7 +20,7 @@ const loadItems = () => {
 
 const addItem = (name) => {
     if (name != '') {
-        fetch('http://localhost:5000/prove10/insert', {
+        fetch('/prove10/insert', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ const clearTextField = () => {
 }
 
 const resetList = () => {
-    fetch('http://localhost:5000/prove10/reset', { method: 'POST' })
+    fetch('/prove10/reset', { method: 'POST' })
         .then(data => {
             loadItems();
         })
