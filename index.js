@@ -28,11 +28,9 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-const options = {
+const options = { // useCreateIndex: true, useFindAndModify: false,
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
     family: 4
 };
 
@@ -81,7 +79,11 @@ mongoose
     )
     .then(result => {
         // This should be your user handling code implement following the course videos
-        app.listen(PORT);
+        const server = app.listen(PORT);
+        const io = require('./socket.js').init(server);
+        io.on('connection', socket => {
+            console.log('Client Connected');
+        });
     })
     .catch(err => {
         console.log(err);

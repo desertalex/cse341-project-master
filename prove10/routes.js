@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs')
+const io = require('../socket.js');
 
 // Path to your JSON file, although it can be hardcoded in this file.
 var dummyData = require('./ta10-data.json');
@@ -19,10 +20,12 @@ router.get('/fetchAll', (req, res, next) => {
 
 router.post('/insert', (req, res, next) => {
     avengerName = req.body.name;
+    alias = req.body.alias;
     if (dummyData.avengers.some(n => n.name === avengerName)) {
         res.json({ status: 400, message: 'Name already exists' });
     } else {
-        dummyData.avengers.push({name: avengerName})
+        dummyData.avengers.push({name: avengerName, alias: alias})
+        io.getIO().emit('posts', {action: 'create', name: avengerName});
         res.json({ status: 200, message: 'Avengers reset' });
     }
 });
@@ -31,6 +34,7 @@ router.post('/reset', (req, res, next) => {
     fs.readFile('./prove10/ta10-data.json', 'utf8', (err, jsonString) => {
         dummyData = JSON.parse(jsonString); //json string is undefined
     });
+    io.getIO().emit('posts', {action: 'create'});
     res.json({ status: 200, message: 'Avengers reset' });
 });
 

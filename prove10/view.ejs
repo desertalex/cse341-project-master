@@ -6,18 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="/prove10/front-end.js"></script>
+
+    <link rel="stylesheet" href="/prove10/style.css">
 </head>
 
 <body onload="loadItems()">
     <p>Enter Names of Avengers</p>
     <button class="btn" type="button" onclick="resetList()">Reset List</button>
-    <button class="btn" type="button" onclick="addItem(document.getElementById('newAvenger').value);clearTextField();loadItems()">Add Avenger</button>
-    <input type="text" name="newAvenger" id="newAvenger">
+    <button class="btn" type="button"
+        onclick="addItem();clearTextField();loadItems()">Add Avenger</button>
+    <input type="text" name="newAvenger" id="newAvenger" placeholder="Name">
+    <input type="text" name="alias" id="alias" placeholder="Alias">
 
-    <!-- addItem(document.getElementById('newAvenger').value) -->
-    <div class="list" id="list"></div>
+    <div>
+        <ul  id="list"></ul>
+    </div>
 
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/prove10/front-end.js"></script>
 </body>
 
 
